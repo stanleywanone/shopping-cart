@@ -1,0 +1,25 @@
+.app {
+  display: grid;
+  min-height: 100vh;
+  background-color: lightgray;
+  grid-template-areas:
+    "head head "
+    "side body";
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: 50px 1fr;
+}
+
+.side {
+  grid-area: side;
+  background-color: antiquewhite;
+}
+
+.head {
+  grid-area: head;
+  background-color: azure;
+}
+
+.body {
+  grid-area: body;
+  background-color: bisque;
+}
