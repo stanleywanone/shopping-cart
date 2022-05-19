@@ -1,7 +1,12 @@
+:root {
+  --primary: #154c79;
+  --primary200: #063970;
+  --background-gray: #eeeee4;
+}
 .app {
   display: grid;
   min-height: 100vh;
-  background-color: lightgray;
+  background-color: var(--background-gray);
   grid-template-areas:
     "head head "
     "side body";
@@ -11,15 +16,14 @@
 
 .side {
   grid-area: side;
-  background-color: antiquewhite;
+  background-color: var(--primary);
 }
 
 .head {
   grid-area: head;
-  background-color: azure;
+  background-color: white;
 }
 
 .body {
   grid-area: body;
-  background-color: bisque;
 }

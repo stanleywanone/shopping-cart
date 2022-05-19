@@ -1,6 +1,7 @@
 import "./App.scss"
 import { useEffect } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
+import { Head } from "./components/Head/Head"
 import { Side } from "./components/Side/Side"
 import { TV } from "./components/TV/TV"
 import Underwear from "./components/Underwear/Underwear"
@@ -9,7 +10,9 @@ import Shoes from "./components/Shoes/Shoes"
 const App = () => {
   return (
     <div className="app">
-      <div className="head"></div>
+      <div className="head">
+        <Head />
+      </div>
       <div className="side">
         <Side />
       </div>

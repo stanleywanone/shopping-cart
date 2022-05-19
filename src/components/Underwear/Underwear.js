@@ -1,7 +1,32 @@
-import { memo } from "react"
-
+import { memo, useEffect, useState } from "react"
+import "./Underwear.scss"
 export const Underwear = memo(() => {
-  return <div>Underwear</div>
+  const [underwearProducts, setUnderwearProducts] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:8000/products/underwear")
+      .then((res) => res.json())
+      .then((d) => setUnderwearProducts(d))
+  }, [])
+  return (
+    <div className="container-underwear">
+      {underwearProducts.length > 0 &&
+        underwearProducts.map((underwear) => {
+          return (
+            <div className="card" key={underwear.id}>
+              <div className="card-pic">{underwear.brand}</div>
+
+              <div className="card-info">
+                <p>{underwear.name}</p>
+                <p>{underwear.price}</p>
+              </div>
+
+              <button>Add</button>
+            </div>
+          )
+        })}
+    </div>
+  )
 })
 
 export default Underwear

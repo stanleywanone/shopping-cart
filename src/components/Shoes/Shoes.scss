@@ -1,0 +1,38 @@
+.container-shoes {
+  height: 100%;
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  display: grid;
+  width: 250px;
+  height: 300px;
+  background-color: white;
+  grid-template-areas:
+    "pic"
+    "info"
+    "button";
+  grid-template-rows: 4fr 2fr 1fr;
+  padding: 8px;
+}
+
+.card-pic {
+  grid-area: pic;
+  height: 100%;
+  background-color: var(--primary200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.card-info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+}
