@@ -1,7 +1,14 @@
-import { memo, useEffect, useState } from "react"
+import { memo, useEffect, useState, useCallback } from "react"
+import { useDispatch } from "react-redux"
+import { itemActions } from "../../store/itemsSlice"
 import "./Underwear.scss"
 export const Underwear = memo(() => {
   const [underwearProducts, setUnderwearProducts] = useState([])
+  const dispatch = useDispatch()
+  const addButton = useCallback((e, item) => {
+    e.preventDefault()
+    dispatch(itemActions.add(item))
+  }, [])
 
   useEffect(() => {
     fetch("http://localhost:8000/products/underwear")
@@ -21,7 +28,7 @@ export const Underwear = memo(() => {
                 <p>{underwear.price}</p>
               </div>
 
-              <button>Add</button>
+              <button onClick={(e) => addButton(e, underwear)}>Add</button>
             </div>
           )
         })}

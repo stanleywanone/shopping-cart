@@ -4,10 +4,20 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { Head } from "./components/Head/Head"
 import { Side } from "./components/Side/Side"
 import { TV } from "./components/TV/TV"
+import { Login } from "./components/Login/Login"
 import Underwear from "./components/Underwear/Underwear"
 import Shoes from "./components/Shoes/Shoes"
+import { useSelector } from "react-redux"
 
 const App = () => {
+  // const login = useSelector((state) => state.login.loginStatus)
+
+  // if (!login)
+  //   return (
+  //     <div className="login">
+  //       <Login />
+  //     </div>
+  //   )
   return (
     <div className="app">
       <div className="head">
@@ -18,6 +28,7 @@ const App = () => {
       </div>
       <div className="body">
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/tv" element={<TV />} />
           <Route path="/shoes" element={<Shoes />} />
           <Route path="/underwear" element={<Underwear />} />

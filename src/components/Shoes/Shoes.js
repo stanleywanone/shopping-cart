@@ -1,13 +1,25 @@
-import { memo, useEffect, useState } from "react"
+import { memo, useEffect, useState, useCallback } from "react"
+import { useDispatch } from "react-redux"
+import { itemActions } from "../../store/itemsSlice"
 import "./Shoes.scss"
+
 export const Shoes = memo(() => {
   const [shoesProducts, setShoesProducts] = useState([])
 
+  const dispatch = useDispatch()
+  const addButton = useCallback(
+    (e, item) => {
+      e.preventDefault()
+      dispatch(itemActions.add(item))
+    },
+    [dispatch]
+  )
   useEffect(() => {
     fetch("http://localhost:8000/products/shoes")
       .then((res) => res.json())
       .then((d) => setShoesProducts(d))
   }, [])
+
   return (
     <div className="container-shoes">
       {shoesProducts.length > 0 &&
@@ -21,7 +33,7 @@ export const Shoes = memo(() => {
                 <p>{shoes.price}</p>
               </div>
 
-              <button>Add</button>
+              <button onClick={(e) => addButton(e, shoes)}>Add</button>
             </div>
           )
         })}
