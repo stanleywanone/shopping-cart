@@ -1,13 +1,13 @@
 import { memo, useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { itemActions } from "../../store/itemsSlice"
+import { add } from "../../store/itemsSlice"
 import "./TV.scss"
 export const TV = memo(() => {
   const [tvProducts, setTvProducts] = useState([])
   const dispatch = useDispatch()
   const addButton = useCallback((e, item) => {
     e.preventDefault()
-    dispatch(itemActions.add(item))
+    dispatch(add(item))
   }, [])
 
   useEffect(() => {

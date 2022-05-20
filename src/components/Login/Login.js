@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux"
-import { loginActions } from "../../store/loginSlice"
+import { signIn } from "../../store/loginSlice"
 import "./Login.scss"
 
 export const Login = () => {
   const dispatch = useDispatch()
   const signIn = () => {
-    dispatch(loginActions.signIn())
+    dispatch(signIn())
   }
   return (
     <div className="container-login">

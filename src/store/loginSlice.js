@@ -13,6 +13,6 @@ const loginSlice = createSlice({
   },
 })
 
-export const loginActions = loginSlice.actions
+export const { signIn, signOut } = loginSlice.actions
 
-export default loginSlice
+export default loginSlice.reducer

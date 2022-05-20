@@ -1,6 +1,6 @@
 import { memo, useEffect, useState, useCallback } from "react"
 import { useDispatch } from "react-redux"
-import { itemActions } from "../../store/itemsSlice"
+import { add } from "../../store/itemsSlice"
 import "./Shoes.scss"
 
 export const Shoes = memo(() => {
@@ -10,7 +10,7 @@ export const Shoes = memo(() => {
   const addButton = useCallback(
     (e, item) => {
       e.preventDefault()
-      dispatch(itemActions.add(item))
+      dispatch(add(item))
     },
     [dispatch]
   )
