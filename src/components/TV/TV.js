@@ -1,20 +1,24 @@
 import { memo, useCallback, useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { add } from "../../store/itemsSlice"
+import { getProducts } from "../../store/productSlice"
 import "./TV.scss"
 export const TV = memo(() => {
-  const [tvProducts, setTvProducts] = useState([])
   const dispatch = useDispatch()
-  const addButton = useCallback((e, item) => {
-    e.preventDefault()
-    dispatch(add(item))
-  }, [])
+  const addButton = useCallback(
+    (e, item) => {
+      e.preventDefault()
+      dispatch(add(item))
+    },
+    [dispatch]
+  )
 
   useEffect(() => {
-    fetch("http://localhost:8000/products/tv")
-      .then((res) => res.json())
-      .then((d) => setTvProducts(d))
-  }, [])
+    dispatch(getProducts())
+  }, [dispatch])
+
+  const tvProducts = useSelector((state) => state.products.products)
+
   return (
     <div className="container-tv">
       {tvProducts.length > 0 &&
