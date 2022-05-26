@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { Head } from "./components/Head/Head"
 import { Side } from "./components/Side/Side"
 import { TV } from "./components/TV/TV"
+import { Cart } from "./components/Cart/Cart"
 import { Login } from "./components/Login/Login"
 import Underwear from "./components/Underwear/Underwear"
 import Shoes from "./components/Shoes/Shoes"
@@ -30,6 +31,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/tv" element={<TV />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/shoes" element={<Shoes />} />
           <Route path="/underwear" element={<Underwear />} />
           <Route path="/" element={<Navigate replace to="/tv" />}></Route>
