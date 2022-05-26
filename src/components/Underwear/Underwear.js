@@ -25,7 +25,7 @@ export const Underwear = memo(() => {
 
               <div className="card-info">
                 <p>{underwear.name}</p>
-                <p>{underwear.price}</p>
+                <p>${underwear.price}</p>
               </div>
 
               <button onClick={(e) => addButton(e, underwear)}>Add</button>

@@ -30,7 +30,7 @@ export const Shoes = memo(() => {
 
               <div className="card-info">
                 <p>{shoes.name}</p>
-                <p>{shoes.price}</p>
+                <p>${shoes.price}</p>
               </div>
 
               <button onClick={(e) => addButton(e, shoes)}>Add</button>

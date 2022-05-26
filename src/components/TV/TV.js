@@ -29,7 +29,7 @@ export const TV = memo(() => {
 
               <div className="card-info">
                 <p>{tv.name}</p>
-                <p>{tv.price}</p>
+                <p>${tv.price}</p>
               </div>
 
               <button onClick={(e) => addButton(e, tv)}>Add</button>
