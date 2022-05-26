@@ -14,6 +14,7 @@ app.get("/products/tv", (req, res) => {
       id: i,
       brand: `Model ${i}`,
       name: `TV ${i}`,
+      description: `TV ${i} description `,
       price: i * 10,
     }
   })
@@ -26,6 +27,7 @@ app.get("/products/shoes", (req, res) => {
       id: i,
       brand: `Factory ${i}`,
       name: `Shoes ${i}`,
+      description: `Shoes ${i} description `,
       price: i * 10,
     }
   })
@@ -38,6 +40,7 @@ app.get("/products/underwear", (req, res) => {
       id: i,
       brand: `Made ${i}`,
       name: `Underwear ${i}`,
+      description: `Underwear ${i} description `,
       price: i * 10,
     }
   })
