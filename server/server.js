@@ -1,12 +1,16 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
+const jwt = require("jsonwebtoken")
 
 app.use(cors())
+app.use(express.json())
 
 app.listen(8000, () => {
   console.log("listening on 8000")
 })
+
+const USERS = [{ id: "1", username: "apple", password: "123" }]
 
 app.get("/products/tv", (req, res) => {
   const items = Array.from({ length: 10 }).map((_, i) => {
@@ -45,4 +49,25 @@ app.get("/products/underwear", (req, res) => {
     }
   })
   res.send(items)
+})
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body
+  const user = USERS.find((user) => {
+    return user.username === username && user.password === password
+  })
+
+  if (user) {
+    //Generate an access token
+    const accessToken = jwt.sign(
+      { id: user.id, result: user },
+      "thisIsTheSecrectKey"
+    )
+    res.json({
+      username: user.username,
+      accessToken,
+    })
+  } else {
+    res.status(400).json("UserName or password incorrect!")
+  }
 })
