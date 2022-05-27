@@ -1,27 +1,38 @@
+import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { signIn } from "../../store/loginSlice"
 import "./Login.scss"
 
 export const Login = () => {
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+
   const dispatch = useDispatch()
-  const signIn = () => {
-    dispatch(signIn())
+  const theSignIn = () => {
+    dispatch(signIn({ username, password }))
   }
+
   return (
     <div className="container-login">
       <div className="login-card">
         <div className="login-group">
           {" "}
           <label>username: </label>
-          <input />
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
         <div className="login-group">
           {" "}
           <label>password: </label>
-          <input />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
 
-        <button onClick={() => signIn()}>Sign In</button>
+        <button onClick={() => theSignIn()}>Sign In</button>
       </div>
     </div>
   )

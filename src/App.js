@@ -11,14 +11,21 @@ import Shoes from "./components/Shoes/Shoes"
 import { useSelector } from "react-redux"
 
 const App = () => {
-  // const login = useSelector((state) => state.login.loginStatus)
+  const login = useSelector((state) => state.login.loginStatus)
+  const accessToken = useSelector((state) => state.login.accessToken)
 
-  // if (!login)
-  //   return (
-  //     <div className="login">
-  //       <Login />
-  //     </div>
-  //   )
+  useEffect(() => {
+    if (accessToken) {
+      localStorage.setItem("accessToken", accessToken)
+    }
+  }, [accessToken])
+
+  if (!login)
+    return (
+      <div className="login">
+        <Login />
+      </div>
+    )
   return (
     <div className="app">
       <div className="head">
