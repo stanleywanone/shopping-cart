@@ -16,6 +16,20 @@ export const Cart = () => {
     [dispatch]
   )
 
+  const onPay = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        auth: localStorage.getItem("accessToken"),
+      },
+      body: JSON.stringify({ balance }),
+    }
+    fetch("http://localhost:8000/pay", requestOptions)
+      .then((res) => res.json())
+      .then((data) => console.log("response, ", data))
+  }
+
   return (
     <div className="container-cart">
       {cartProducts.length > 0 &&
@@ -39,6 +53,7 @@ export const Cart = () => {
       <div className="cart-total-price-card">
         <div className="cart-total-price">Total Price: {balance}</div>
       </div>
+      <button onClick={() => onPay()}>Pay</button>
     </div>
   )
 }

@@ -71,3 +71,30 @@ app.post("/login", (req, res) => {
     res.status(400).json("UserName or password incorrect!")
   }
 })
+
+const verify = (req, res, next) => {
+  const authHeader = req.headers.auth
+  if (authHeader) {
+    const token = authHeader
+    jwt.verify(token, "thisIsTheSecrectKey", (err, data) => {
+      if (err) {
+        return res.status(403).json("Tolen is not valid")
+      }
+      if (data.result.username !== "apple") {
+        res.status(401).json("You are not authenticated")
+      }
+      next()
+    })
+  } else {
+    res.status(401).json("You are not authenticated")
+  }
+}
+
+app.post("/pay", verify, (req, res) => {
+  const balance = req.body.balance
+  if (balance) {
+    res.json(`We got the payment ${balance}`)
+  } else {
+    res.json("No balance")
+  }
+})
