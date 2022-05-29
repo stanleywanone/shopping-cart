@@ -15,9 +15,13 @@ const loginSlice = createSlice({
       state.username = action.payload.username
       state.accessToken = action.payload.accessToken
     },
+    signInFailed(state, action) {
+      state.loginStatus = false
+    },
   },
 })
 
-export const { signIn, signOut, signInSuccess } = loginSlice.actions
+export const { signIn, signOut, signInSuccess, signInFailed } =
+  loginSlice.actions
 
 export default loginSlice.reducer

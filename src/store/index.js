@@ -3,7 +3,8 @@ import createSagaMiddleware from "@redux-saga/core"
 import itemsReducer from "./itemsSlice"
 import loginSliceReducer from "./loginSlice"
 import productReducer from "./productSlice"
-import productSaga from "../saga/productSaga"
+import paymentReducer from "./paymentSlice"
+
 import rootSaga from "../saga/rootSaga"
 
 const saga = createSagaMiddleware()
@@ -13,6 +14,7 @@ const store = configureStore({
     items: itemsReducer,
     login: loginSliceReducer,
     products: productReducer,
+    payment: paymentReducer,
   },
   middleware: [saga],
 })

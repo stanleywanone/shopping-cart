@@ -1,11 +1,13 @@
 import { useCallback, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectNumber } from "../../store/itemsSlice"
+import { pay } from "../../store/paymentSlice"
 import "./Cart.scss"
 
 export const Cart = () => {
   const cartProducts = useSelector((state) => state.items.items)
   const balance = useSelector((state) => state.items.balance)
+  const paymentRes = useSelector((state) => state.payment.paymentRes)
   const dispatch = useDispatch()
 
   const onSelect = useCallback(
@@ -17,18 +19,12 @@ export const Cart = () => {
   )
 
   const onPay = () => {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        auth: localStorage.getItem("accessToken"),
-      },
-      body: JSON.stringify({ balance }),
-    }
-    fetch("http://localhost:8000/pay", requestOptions)
-      .then((res) => res.json())
-      .then((data) => console.log("response, ", data))
+    dispatch(pay({ accessToken: localStorage.getItem("accessToken"), balance }))
   }
+
+  useEffect(() => {
+    if (paymentRes.length > 0) alert(paymentRes)
+  }, [paymentRes])
 
   return (
     <div className="container-cart">
