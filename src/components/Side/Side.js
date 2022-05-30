@@ -1,10 +1,17 @@
-import { memo } from "react"
+import { memo, useCallback } from "react"
 import { Link } from "react-router-dom"
 import { useLocation } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { signOut } from "../../store/loginSlice"
 import "./Side.scss"
 
 export const Side = memo(() => {
   const location = useLocation()
+
+  const dispatch = useDispatch()
+  const onSignOut = useCallback(() => {
+    dispatch(signOut())
+  }, [dispatch])
   return (
     <div className="container-side">
       <Link
@@ -40,6 +47,9 @@ export const Side = memo(() => {
       >
         Underwear
       </Link>
+      <div className="container-item" onClick={() => onSignOut()}>
+        Log Out
+      </div>
     </div>
   )
 })
