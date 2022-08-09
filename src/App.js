@@ -27,30 +27,34 @@ const App = () => {
     dispatch(checkSignIn(authToken))
   }, [accessToken, dispatch])
 
-  if (!login)
-    return (
-      <div className="login">
-        <Login />
-      </div>
-    )
   return (
     <div className="app">
-      <div className="head">
-        <Head />
-      </div>
-      <div className="side">
-        <Side />
-      </div>
-      <div className="body">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/tv" element={<TV />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/shoes" element={<Shoes />} />
-          <Route path="/underwear" element={<Underwear />} />
-          <Route path="/" element={<Navigate replace to="/tv" />} />
-        </Routes>
-      </div>
+      {login === null ? (
+        <div>loading...</div>
+      ) : login === false ? (
+        <div className="login">
+          <Login />
+        </div>
+      ) : (
+        <>
+          <div className="head">
+            <Head />
+          </div>
+          <div className="side">
+            <Side />
+          </div>
+          <div className="body">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/tv" element={<TV />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/shoes" element={<Shoes />} />
+              <Route path="/underwear" element={<Underwear />} />
+              <Route path="/" element={<Navigate replace to="/tv" />} />
+            </Routes>
+          </div>
+        </>
+      )}
     </div>
   )
 }
