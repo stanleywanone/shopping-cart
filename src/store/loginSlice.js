@@ -3,7 +3,7 @@ import { actionChannel } from "redux-saga/effects"
 
 const loginSlice = createSlice({
   name: "login",
-  initialState: { username: "", accessToken: "", loginStatus: false },
+  initialState: { username: "", accessToken: "", loginStatus: null },
   reducers: {
     signIn(state, action) {
       state.loginStatus = false
@@ -22,7 +22,11 @@ const loginSlice = createSlice({
       state.loginStatus = false
     },
     checkSignIn(state, action) {
-      if (action.payload.authToken === "") return (state.loginStatus = false)
+      if (action.payload === null || action.payload.authToken === " ") {
+        state.loginStatus = false
+        return
+      }
+
       state.loginStatus = true
     },
   },

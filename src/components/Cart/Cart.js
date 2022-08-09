@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectNumber } from "../../store/itemsSlice"
 import { pay } from "../../store/paymentSlice"
+import { clean } from "../../store/itemsSlice"
 import "./Cart.scss"
 
 export const Cart = () => {
@@ -23,15 +24,18 @@ export const Cart = () => {
   }
 
   useEffect(() => {
-    if (paymentRes.length > 0) alert(paymentRes)
-  }, [paymentRes])
+    if (paymentRes.length > 0) {
+      alert(paymentRes)
+      dispatch(clean())
+    }
+  }, [dispatch, paymentRes])
 
   return (
     <div className="container-cart">
       {cartProducts.length > 0 &&
         cartProducts.map((product) => {
           return (
-            <div className="cart-card" key={product.name}>
+            <div className="cart-card" key={product.itemId}>
               <div className="cart-name">{product.name}</div>
               <div className="cart-brand">{product.brand}</div>
               <div className="cart-description">{product.description}</div>
